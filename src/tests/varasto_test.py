@@ -10,6 +10,41 @@ class TestVarasto(unittest.TestCase):
         # https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertAlmostEqual
         self.assertAlmostEqual(self.varasto.saldo, 0)
 
+    # negatiivinen tilavuus on nolla
+    def test_tilavuus_on_nolla(self):
+        self.varasto = Varasto(-10)
+        self.assertEqual(self.varasto.tilavuus, 0)
+
+    # negatiivinen saldo on nolla
+    def test_alkusaldo_on_nolla(self):
+        self.varasto = Varasto(10, -10)
+        self.assertEqual(self.varasto.saldo, 0)
+
+    # negatiivinen luku saldoon ei muuta saldoa
+    def test_lisaa_varastoon_negatiivinen(self):
+        self.varasto.lisaa_varastoon(-1)
+        self.assertEqual(self.varasto.saldo, 0)
+
+    # liian suuri luku saldoon ei lisätä
+    def test_liian_iso_lisays(self):
+        self.varasto.lisaa_varastoon(9000000)
+        self.assertEqual(self.varasto.saldo, 10)
+
+    # negatiivisen ottaminen varastosta palauttaa nollan
+    def test_ota_varastosta_negatiivinen(self):
+        otettu_maara = self.varasto.ota_varastosta(-1)
+        self.assertEqual(otettu_maara, 0)
+
+    # suuremman kuin saldomäärän ottaminen pois palauttaa saldomäärän, koska ollaan tyhjennetty saldo
+    def test_ota_varastosta_liian_iso(self):
+        self.varasto.lisaa_varastoon(10)
+        otettu_maara = self.varasto.ota_varastosta(9000000)
+        self.assertEqual(otettu_maara, 10)
+
+    # __Str__ palauttaa oikean merkkijonon
+    def test_str_palauttaa_oikean_merkkijonon(self):
+        self.assertEqual(str(self.varasto), "saldo = 0, vielä tilaa 10")
+
     def test_uudella_varastolla_oikea_tilavuus(self):
         self.assertAlmostEqual(self.varasto.tilavuus, 10)
 
