@@ -60,7 +60,7 @@ def take_from_storage(olutta, mehua):
     print(f"saatiin {saatiin}")
     print(f"Mehuvarasto: {mehua}")
 
-
+# aaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasaaaaasdasdasdadadasd
 def main():
     mehua = Varasto(100.0)
     olutta = Varasto(100.0, 20.2)
